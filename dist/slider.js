@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background-color: red;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\n\n.slider {\n  margin: 0 auto;\n  overflow: hidden;\n}\n.slider__slider-container {\n  display: flex;\n}\n.slider__slider-container__slide {\n  padding: 0 5px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -472,6 +472,78 @@ module.exports = function (cssWithMappingToString) {
   return list;
 };
 
+/***/ }),
+/* 11 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ initialize)
+/* harmony export */ });
+/* harmony import */ var _render_render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+
+
+function initialize() {
+  this.render = _render_render__WEBPACK_IMPORTED_MODULE_0__.render;
+  this.renderSlides = _render_render__WEBPACK_IMPORTED_MODULE_0__.renderSlides;
+  this.render();
+  this.renderSlides(this.data);
+}
+
+/***/ }),
+/* 12 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "renderSlides": () => (/* binding */ renderSlides)
+/* harmony export */ });
+function render() {
+  this.sliderElement = document.getElementById(this.el);
+  this.sliderElement.className = 'slider';
+  this.sliderContainer = document.createElement('div');
+  this.sliderContainer.className = 'slider__slider-container';
+  this.sliderElement.appendChild(this.sliderContainer);
+  this.leftArrowBtn = document.createElement('button');
+  this.leftArrowBtn.className = 'slider__left-arrow-btn';
+  this.leftArrow = document.createElement('i');
+  this.leftArrow.classList.add('slider__left-arrow-btn__left', 'fas', 'fa-chevron-left');
+  this.sliderElement.appendChild(this.leftArrowBtn);
+  this.leftArrowBtn.appendChild(this.leftArrow);
+  this.rightArrowBtn = document.createElement('button');
+  this.rightArrowBtn.className = 'slider__right-arrow-btn';
+  this.rightArrow = document.createElement('i');
+  this.rightArrow.classList.add('slider__right-arrow-btn__right', 'fas', 'fa-chevron-right');
+  this.sliderElement.appendChild(this.rightArrowBtn);
+  this.rightArrowBtn.appendChild(this.rightArrow);
+}
+function renderSlides(data) {
+  var _this = this;
+
+  this.sliderContainer.style.width = "".concat(this.data.length * (this.sliderElement.offsetwidth / this.previewType), "px");
+  data.forEach(function (slide) {
+    var slideContainer = document.createElement('div');
+    slideContainer.className = 'slider__slider-container__slide';
+    var slideLink = document.createElement('a');
+    slideLink.className = 'slider__link';
+    slideLink.href = slide.redirectLink;
+    slideLink.target = '_blank';
+    slideContainer.appendChild(slideLink);
+    var slideImg = document.createElement('img');
+    slideImg.style.height = "".concat(9 * (_this.sliderElement.offsetwidth / _this.previewType) / 16, "px");
+    slideImg.className = 'slider__link__img';
+    slideImg.src = slide.imgUrl;
+    var slideTitle = document.createElement('h1');
+    slideTitle.className = 'slider__link__title';
+    slideTitle.innerText = slide.caption;
+    slideLink.appendChild(slideImg);
+    slideLink.appendChild(slideTitle);
+
+    _this.sliderContainer.appendChild(slideContainer);
+  });
+}
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -546,13 +618,32 @@ var __webpack_exports__ = {};
 (() => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _app_core_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 
 
 var sayHi = function sayHi() {
   return console.log('Hi');
 };
 
-sayHi();
+
+
+
+var Slider = /*#__PURE__*/_createClass(function Slider(el, data, options) {
+  _classCallCheck(this, Slider);
+
+  this.el = el;
+  this.data = data;
+  this.initialize = _app_core_core__WEBPACK_IMPORTED_MODULE_1__["default"];
+  this.previewType = 6;
+});
+
+window.Slider = Slider;
 })();
 
 /******/ })()
