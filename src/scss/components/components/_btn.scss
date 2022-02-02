@@ -33,3 +33,41 @@
     }
   }
 }
+
+@include breakpoint(sm) {
+  .slider {
+    &__left-arrow-btn {
+      height: 10vw;
+      top: 20vw;
+      width: 10vw;
+
+      &__left {
+        font-size: 8vw;
+        left: 2vw;
+      }
+    }
+
+    &__right-arrow-btn {
+      height: 10vw;
+      top: 20vw;
+      width: 10vw;
+
+      &__right {
+        font-size: 8vw;
+        right: 2vw;
+      }
+    }
+
+  }
+}
+@include breakpoint(md) {
+  .slider {
+    &__left-arrow-btn {
+      top: 6vw;
+    }
+
+    &__right-arrow-btn {
+      top: 6vw;
+    }
+  }
+}
