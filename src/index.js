@@ -11,6 +11,7 @@ class Slider {
     this.data = data;
     this.initialize = core;
     this.previewType = 6;
+    this.countInfinity = 0;
   }
 }
 
